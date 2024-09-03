@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matej Leos</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Pixels&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Pixels&family=Tiny5&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>💀 BYL JSI ZLOŠOVÁN 💀</h1>
+<h1>Klikni na obrázek a získej body!</h1>
+<img src="https://cdn.discordapp.com/emojis/1248003349433811076.webp?size=96&quality=lossless" alt="Klikni sem" id="clickableImage">
+<br>
+<div id="body" class="points">Body: <span id="score">0</span></div>
+
+<script>
+    let score = 0;
+    let lastClickTime = 0;
+
+    document.getElementById("clickableImage").addEventListener("click", function(event) {
+        score++;
+        document.getElementById("score").textContent = score;
+
+        let currentTime = new Date().getTime();
+        let timeDiff = currentTime - lastClickTime;
+        lastClickTime = currentTime;
+
+        let speed = 1000 / timeDiff;
+
+        let color = "green";
+
+        if (speed > 2) {
+            color = "orange";
+        }
+
+        if (speed > 4) {
+            color = "red";
+        }
+
+        document.getElementById("body").style.textShadow = `2px 2px 4px ${color}`;
+
+        document.getElementById("clickableImage").classList.add("shake");
+
+        setTimeout(function() {
+            document.getElementById("clickableImage").classList.remove("shake");
+        }, 1000);
+
+        document.getElementById("score").classList.add("shake");
+
+        setTimeout(function() {
+            document.getElementById("score").classList.remove("shake");
+        }, 1000);
+
+        // Add click particles
+        let particles = ["+1⠀bramburky", "+1⠀uzena klobaska ", "+1⠀cokolada", "+1⠀tocena zmrzlina"]; // List of strings for particles
+        let randomIndex = Math.floor(Math.random() * particles.length); // Get random index
+        let randomParticle = particles[randomIndex]; // Get random particle
+
+        let particle = document.createElement("div"); // Create a new div element
+        particle.classList.add("particle"); // Add particle class
+        particle.textContent = randomParticle; // Set particle text
+
+        // Get random position within the viewport
+        let x = Math.random() * window.innerWidth; // Random x position
+        let y = Math.random() * window.innerHeight; // Random y position
+
+        particle.style.left = x + "px"; // Set left position of particle
+        particle.style.top = y + "px"; // Set top position of particle
+
+        document.body.appendChild(particle); // Append particle to the body
+
+        setTimeout(function() {
+            particle.remove(); // Remove particle after a certain time
+        }, 1000);
+
+
+        if (score > 30) {
+            let randomParticle = "Jupi matej uz nema hlad"; // Get random index
+            let goal = document.createElement("div"); // Create a new div element
+            goal.classList.add("goal"); // Add particle class
+            goal.textContent = randomParticle; // Set particle text
+
+            let x = Math.random() * window.innerWidth; // Random x position
+            let y = Math.random() * window.innerHeight; // Random y position
+
+            goal.style.left = x + "px"; // Set left position of particle
+            goal.style.top = y + "px"; // Set top position of particle
+
+            document.body.appendChild(goal); // Append particle to the body
+
+            setTimeout(function() {
+                goal.remove(); // Remove particle after a certain time
+            }, 1000);
+        }
+
+        if (score > 100) {
+            let randomParticle = "MATEJ SE PREJEDL"; // Get random index
+            let goal1 = document.createElement("div"); // Create a new div element
+            goal1.classList.add("goal1"); // Add particle class
+            goal1.textContent = randomParticle; // Set particle text
+
+            let x = Math.random() * window.innerWidth; // Random x position
+            let y = Math.random() * window.innerHeight; // Random y position
+
+            goal1.style.left = x + "px"; // Set left position of particle
+            goal1.style.top = y + "px"; // Set top position of particle
+
+            document.body.appendChild(goal1); // Append particle to the body
+
+            setTimeout(function() {
+                goal1.remove(); // Remove particle after a certain time
+            }, 1000);
+        }
+    });
+</script>
+
+</body>
+</html>
