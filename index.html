@@ -16,9 +16,30 @@
 <br>
 <div id="body" class="points">Body: <span id="score">0</span></div>
 
+<br>
+
+<div>
+    <button class="upgrades" id="lidl">Lidl -10</button>
+    <button class="upgrades" id="penny">Penny- 50</button>
+</div>
+
 <script>
-    let score = 0;
+    console.warn("KAM CUMIS LOL")
+    
+    //check if cookie data exists
+    var score = parseInt(getCookie("Bramburky"))
+    
+    if (isNaN(score)){
+        score = 0;
+        console.warn("BRAMBURKY SET TO 0!!")
+    }
+
+    document.getElementById("score").textContent = score;
+
     let lastClickTime = 0;
+    var upgradePlus = 0
+    var up = 0;
+
 
     document.getElementById("clickableImage").addEventListener("click", function(event) {
         score++;
@@ -76,6 +97,8 @@
             particle.remove(); // Remove particle after a certain time
         }, 1000);
 
+        saveBramburky("Bramburky", score)
+
 
         if (score > 30) {
             let randomParticle = "Jupi matej uz nema hlad"; // Get random index
@@ -114,7 +137,58 @@
                 goal1.remove(); // Remove particle after a certain time
             }, 1000);
         }
+
+        //points logic
+
+        if (score <= 10){
+            document.getElementsByClassName("lidl").addEventListener("click", function(event)) 
+            {
+                score = score - 10;
+
+            }
+        }
     });
+
+    function upgrade(uName){
+        if (uName == "lidl") {
+            up = up + 1;
+        }
+
+        if (uName == "penny") {
+            up = up + 5;
+        }
+    }
+
+    function addUpgrades(){
+        for (var R = 0; R = 0;) {
+            points + up
+        }
+    }
+
+    //store data in cookie (presistance)
+    function saveBramburky(cname, cvalue) {
+        var d = new Date();
+        d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000)); // Set expiration date to 1 year from now
+        var expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";path=/;" + expires;
+    }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+
 </script>
 
 </body>

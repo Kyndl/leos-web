@@ -25,6 +25,18 @@ img:active {
     font-family: 'Rubik Pixels', sans-serif;
 }
 
+
+.upgrades {
+    border-color: #bf1fff;
+    border-radius: .4ch;
+    width: 50ch;
+    height: 10ch;
+
+    margin-left: 2ch;
+
+    
+}
+
 h1 {
     font-family: 'Tiny5', sans-serif; 
     font-size: 12ch;
