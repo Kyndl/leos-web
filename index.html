@@ -19,8 +19,8 @@
 <br>
 
 <div>
-    <button class="upgrades" id="lidl">Lidl -10</button>
-    <button class="upgrades" id="penny">Penny- 50</button>
+    <button class="upgrades" id="lidl">Lidl -5</button>
+    <button class="upgrades" id="penny">Penny -10</button>
 </div>
 
 <script>
@@ -43,6 +43,9 @@
 
     document.getElementById("clickableImage").addEventListener("click", function(event) {
         score++;
+
+        addUpgrades()
+
         document.getElementById("score").textContent = score;
 
         let currentTime = new Date().getTime();
@@ -137,32 +140,37 @@
                 goal1.remove(); // Remove particle after a certain time
             }, 1000);
         }
-
-        //points logic
-
-        if (score <= 10){
-            document.getElementsByClassName("lidl").addEventListener("click", function(event)) 
-            {
-                score = score - 10;
-
-            }
-        }
     });
 
+    //points logic
+    document.getElementById("lidl").onclick = function() {
+        if (score >= 10) {
+            upgrade("lidl");
+            cost = score - 10;
+            saveBramburky("Bramburky", cost);
+        }
+    };
+    
+    document.getElementById("penny").onclick = function() {
+        if (score >= 25) {
+            upgrade("penny");
+            cost = score - 25;
+            saveBramburky("Bramburky", cost);
+        }
+    };
+    
     function upgrade(uName){
         if (uName == "lidl") {
             up = up + 1;
         }
-
+    
         if (uName == "penny") {
             up = up + 5;
         }
     }
-
+    
     function addUpgrades(){
-        for (var R = 0; R = 0;) {
-            points + up
-        }
+        score = score + up;
     }
 
     //store data in cookie (presistance)
